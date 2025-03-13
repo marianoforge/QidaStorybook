@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "outDir": "",
+    "jsx": "react-jsx"
+  },
+  "files": [],
+  "exclude": ["node_modules", "tmp"],
+  "include": ["shared-ui/src/**/*"]
+}

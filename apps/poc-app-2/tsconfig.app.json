@@ -17,7 +17,6 @@
     "src/**/*.test.js",
     "src/**/*.spec.jsx",
     "src/**/*.test.jsx",
-    "jest.config.ts",
     "**/*.stories.ts",
     "**/*.stories.js",
     "**/*.stories.jsx",

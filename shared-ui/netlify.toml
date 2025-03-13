@@ -1,0 +1,6 @@
+[build]
+  publish = "storybook-static"
+  command = "npm install && npx storybook build"
+
+[build.environment]
+  NODE_VERSION = "18" 

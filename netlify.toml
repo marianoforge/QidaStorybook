@@ -1,0 +1,7 @@
+[build]
+  base = "shared-ui/"
+  publish = "storybook-static"
+  command = "npm install && npm run build-storybook"
+
+[build.environment]
+  NODE_VERSION = "18" 

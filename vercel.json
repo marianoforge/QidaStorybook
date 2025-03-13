@@ -1,0 +1,6 @@
+{
+  "buildCommand": "cd shared-ui && npm run build-storybook",
+  "outputDirectory": "shared-ui/storybook-static",
+  "devCommand": "cd shared-ui && npm run storybook",
+  "installCommand": "cd shared-ui && npm install"
+}
