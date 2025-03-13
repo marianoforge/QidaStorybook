@@ -1,6 +1,6 @@
 [build]
   publish = "storybook-static"
-  command = "npm install && npx storybook build"
+  command = "npm install --legacy-peer-deps && npm run build-storybook"
 
 [build.environment]
   NODE_VERSION = "18" 

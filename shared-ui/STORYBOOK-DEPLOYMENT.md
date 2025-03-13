@@ -2,9 +2,14 @@
 
 Este documento proporciona instrucciones para desplegar el Storybook de la biblioteca de componentes en diferentes plataformas.
 
-## Problemas conocidos y soluciones
+## Configuración actualizada
 
-Actualmente, hay algunos problemas al construir Storybook localmente debido a configuraciones de TypeScript y Babel. La mejor opción es utilizar servicios de despliegue continuo como Netlify o Vercel, que tienen entornos de construcción más controlados.
+Hemos realizado los siguientes cambios para resolver los problemas de construcción:
+
+1. Agregado todas las dependencias necesarias de Storybook en `package.json`
+2. Simplificado la configuración de Storybook en `.storybook/main.js`
+3. Agregado un archivo `.babelrc` específico para el proyecto
+4. Configurado Netlify para usar `--legacy-peer-deps` durante la instalación
 
 ## Opciones de despliegue
 
@@ -24,7 +29,7 @@ Actualmente, hay algunos problemas al construir Storybook localmente debido a co
 3. Configura las opciones de despliegue:
 
    - **Base directory**: `poc-monorepo/shared-ui/` (ajusta según la estructura de tu proyecto)
-   - **Build command**: `npm install && npx storybook build`
+   - **Build command**: `npm install --legacy-peer-deps && npm run build-storybook`
    - **Publish directory**: `storybook-static`
 
 4. Haz clic en "Deploy site"
@@ -34,8 +39,8 @@ Actualmente, hay algunos problemas al construir Storybook localmente debido a co
 Si tienes problemas con el despliegue continuo, puedes usar Netlify Drop:
 
 1. Clona el repositorio localmente y navega al directorio del proyecto.
-2. Instala las dependencias: `npm install`
-3. Construye Storybook en un entorno de CI/CD o en una máquina con una configuración diferente.
+2. Instala las dependencias: `npm install --legacy-peer-deps`
+3. Construye Storybook: `npm run build-storybook`
 4. Una vez que tengas la carpeta `storybook-static`:
    - Ve a [Netlify Drop](https://app.netlify.com/drop)
    - Arrastra y suelta la carpeta `storybook-static`
@@ -52,7 +57,7 @@ Si tienes problemas con el despliegue continuo, puedes usar Netlify Drop:
 
    - **Framework Preset**: Other
    - **Root Directory**: `poc-monorepo/shared-ui/` (ajusta según la estructura de tu proyecto)
-   - **Build Command**: `npm install && npx storybook build`
+   - **Build Command**: `npm install --legacy-peer-deps && npm run build-storybook`
    - **Output Directory**: `storybook-static`
 
 3. Haz clic en "Deploy"
@@ -78,14 +83,18 @@ Tanto Netlify como Vercel permiten configurar dominios personalizados:
 
 ### Problemas comunes
 
-1. **Error en el despliegue**:
+1. **Error de dependencias faltantes**:
 
-   - Verifica que todas las dependencias estén instaladas
-   - Asegúrate de que la configuración de Netlify o Vercel sea correcta
-   - Revisa los logs de construcción para identificar errores específicos
+   - Asegúrate de que todas las dependencias de Storybook estén instaladas en `package.json`
+   - Usa la opción `--legacy-peer-deps` para evitar problemas de compatibilidad
 
-2. **Estilos o recursos no cargados**:
-   - Verifica que las rutas a los recursos sean relativas
-   - Asegúrate de que los archivos estáticos estén incluidos en la carpeta `public`
+2. **Error de configuración de Storybook**:
+
+   - Verifica que los archivos `.storybook/main.js` y `.storybook/preview.js` existan y estén correctamente configurados
+   - Asegúrate de que el directorio `public` exista, incluso si está vacío
+
+3. **Problemas con Babel**:
+   - Verifica que el archivo `.babelrc` esté correctamente configurado
+   - Asegúrate de que las dependencias de Babel estén instaladas
 
 Para más información, consulta la [documentación oficial de Storybook](https://storybook.js.org/docs/react/sharing/publish-storybook).
