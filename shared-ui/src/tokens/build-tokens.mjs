@@ -61,41 +61,45 @@ function generateCSSVariables(tokens) {
   // Procesar tokens de componentes
   if (tokens.components) {
     for (const component in tokens.components) {
-      for (const variant in tokens.components[component]) {
-        if (
-          typeof tokens.components[component][variant] === 'object' &&
-          variant !== 'sizes'
-        ) {
-          for (const state in tokens.components[component][variant]) {
-            const value = tokens.components[component][variant][state].value;
+      // Verificar si el componente tiene variantes
+      if (tokens.components[component].variants) {
+        for (const variant in tokens.components[component].variants) {
+          for (const state in tokens.components[component].variants[variant]) {
+            const value =
+              tokens.components[component].variants[variant][state].value;
             if (value) {
               // Reemplazar referencias a otros tokens
               let finalValue = value;
               if (value.startsWith('{') && value.endsWith('}')) {
                 const reference = value
                   .substring(1, value.length - 1)
-                  .replace(/\./g, '-');
+                  .replace(/\./g, '-')
+                  .replace(/^global-/, ''); // Eliminar el prefijo 'global-'
                 finalValue = `var(--${reference})`;
               }
               css += `  --${component}-${variant}-${state}: ${finalValue};\n`;
             }
           }
-        } else if (variant === 'sizes') {
-          for (const size in tokens.components[component][variant]) {
-            for (const prop in tokens.components[component][variant][size]) {
-              const value =
-                tokens.components[component][variant][size][prop].value;
-              if (value) {
-                // Reemplazar referencias a otros tokens
-                let finalValue = value;
-                if (value.includes('{') && value.includes('}')) {
-                  // Manejar múltiples referencias en un valor (como en padding)
-                  finalValue = value.replace(/\{([^}]+)\}/g, (match, p1) => {
-                    return `var(--${p1.replace(/\./g, '-')})`;
-                  });
-                }
-                css += `  --${component}-${size}-${prop}: ${finalValue};\n`;
+        }
+      }
+
+      // Procesar tamaños si existen
+      if (tokens.components[component].sizes) {
+        for (const size in tokens.components[component].sizes) {
+          for (const prop in tokens.components[component].sizes[size]) {
+            const value = tokens.components[component].sizes[size][prop].value;
+            if (value) {
+              // Reemplazar referencias a otros tokens
+              let finalValue = value;
+              if (value.includes('{') && value.includes('}')) {
+                // Manejar múltiples referencias en un valor (como en padding)
+                finalValue = value.replace(/\{([^}]+)\}/g, (match, p1) => {
+                  return `var(--${p1
+                    .replace(/\./g, '-')
+                    .replace(/^global-/, '')})`;
+                });
               }
+              css += `  --${component}-${size}-${prop}: ${finalValue};\n`;
             }
           }
         }
@@ -178,25 +182,31 @@ function generateJSTokens(tokens) {
     jsTokens.components = {};
     for (const component in tokens.components) {
       jsTokens.components[component] = {};
-      for (const variant in tokens.components[component]) {
-        if (variant !== 'sizes') {
-          jsTokens.components[component][variant] = {};
-          for (const state in tokens.components[component][variant]) {
-            const value = tokens.components[component][variant][state].value;
+
+      // Procesar variantes si existen
+      if (tokens.components[component].variants) {
+        jsTokens.components[component].variants = {};
+        for (const variant in tokens.components[component].variants) {
+          jsTokens.components[component].variants[variant] = {};
+          for (const state in tokens.components[component].variants[variant]) {
+            const value =
+              tokens.components[component].variants[variant][state].value;
             if (value) {
-              jsTokens.components[component][variant][state] = value;
+              jsTokens.components[component].variants[variant][state] = value;
             }
           }
-        } else {
-          jsTokens.components[component].sizes = {};
-          for (const size in tokens.components[component][variant]) {
-            jsTokens.components[component].sizes[size] = {};
-            for (const prop in tokens.components[component][variant][size]) {
-              const value =
-                tokens.components[component][variant][size][prop].value;
-              if (value) {
-                jsTokens.components[component].sizes[size][prop] = value;
-              }
+        }
+      }
+
+      // Procesar tamaños si existen
+      if (tokens.components[component].sizes) {
+        jsTokens.components[component].sizes = {};
+        for (const size in tokens.components[component].sizes) {
+          jsTokens.components[component].sizes[size] = {};
+          for (const prop in tokens.components[component].sizes[size]) {
+            const value = tokens.components[component].sizes[size][prop].value;
+            if (value) {
+              jsTokens.components[component].sizes[size][prop] = value;
             }
           }
         }

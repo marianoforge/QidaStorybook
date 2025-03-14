@@ -435,5 +435,164 @@
       }
     }
   },
-  "components": {}
+  "components": {
+    "button": {
+      "variants": {
+        "primary": {
+          "background": {
+            "value": "{global.colors.primary.500}"
+          },
+          "text": {
+            "value": "{global.colors.base.white}"
+          },
+          "border": {
+            "value": "{global.colors.primary.500}"
+          },
+          "hoverBackground": {
+            "value": "{global.colors.primary.400}"
+          },
+          "hoverText": {
+            "value": "{global.colors.base.white}"
+          },
+          "hoverBorder": {
+            "value": "{global.colors.primary.400}"
+          },
+          "activeBackground": {
+            "value": "{global.colors.primary.600}"
+          },
+          "activeText": {
+            "value": "{global.colors.base.white}"
+          },
+          "activeBorder": {
+            "value": "{global.colors.primary.600}"
+          }
+        },
+        "secondary": {
+          "background": {
+            "value": "{global.colors.secondary.500}"
+          },
+          "text": {
+            "value": "{global.colors.base.white}"
+          },
+          "border": {
+            "value": "{global.colors.secondary.500}"
+          },
+          "hoverBackground": {
+            "value": "{global.colors.secondary.400}"
+          },
+          "hoverText": {
+            "value": "{global.colors.base.white}"
+          },
+          "hoverBorder": {
+            "value": "{global.colors.secondary.400}"
+          },
+          "activeBackground": {
+            "value": "{global.colors.secondary.600}"
+          },
+          "activeText": {
+            "value": "{global.colors.base.white}"
+          },
+          "activeBorder": {
+            "value": "{global.colors.secondary.600}"
+          }
+        },
+        "tertiary": {
+          "background": {
+            "value": "{global.colors.neutral.200}"
+          },
+          "text": {
+            "value": "{global.colors.neutral.800}"
+          },
+          "border": {
+            "value": "{global.colors.neutral.400}"
+          },
+          "hoverBackground": {
+            "value": "{global.colors.neutral.300}"
+          },
+          "hoverText": {
+            "value": "{global.colors.neutral.900}"
+          },
+          "hoverBorder": {
+            "value": "{global.colors.neutral.500}"
+          },
+          "activeBackground": {
+            "value": "{global.colors.neutral.400}"
+          },
+          "activeText": {
+            "value": "{global.colors.neutral.900}"
+          },
+          "activeBorder": {
+            "value": "{global.colors.neutral.600}"
+          }
+        }
+      },
+      "sizes": {
+        "small": {
+          "padding": {
+            "value": "{global.spacing.8} {global.spacing.12}"
+          },
+          "fontSize": {
+            "value": "{global.typography.fontSizes.label-sm}"
+          },
+          "borderRadius": {
+            "value": "{global.borderRadius.sm}"
+          }
+        },
+        "medium": {
+          "padding": {
+            "value": "{global.spacing.12} {global.spacing.16}"
+          },
+          "fontSize": {
+            "value": "{global.typography.fontSizes.label-md}"
+          },
+          "borderRadius": {
+            "value": "{global.borderRadius.sm}"
+          }
+        },
+        "large": {
+          "padding": {
+            "value": "{global.spacing.16} {global.spacing.24}"
+          },
+          "fontSize": {
+            "value": "{global.typography.fontSizes.label-lg}"
+          },
+          "borderRadius": {
+            "value": "{global.borderRadius.md}"
+          }
+        }
+      },
+      "iconButton": {
+        "padding": {
+          "value": "{global.spacing.12}"
+        },
+        "size": {
+          "small": {
+            "value": "32px"
+          },
+          "medium": {
+            "value": "40px"
+          },
+          "large": {
+            "value": "48px"
+          }
+        }
+      },
+      "fabButton": {
+        "size": {
+          "small": {
+            "value": "40px"
+          },
+          "medium": {
+            "value": "56px"
+          },
+          "large": {
+            "value": "72px"
+          }
+        },
+        "borderRadius": {
+          "value": "{global.borderRadius.full}"
+        }
+      }
+    }
+  }
 }

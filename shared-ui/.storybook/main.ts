@@ -8,6 +8,7 @@ const config: StorybookConfig = {
     '@storybook/addon-interactions',
     '@nx/react/plugins/storybook',
     '@storybook/addon-designs',
+    '@storybook/addon-links',
   ],
   framework: {
     name: '@storybook/react-webpack5',
@@ -33,6 +34,22 @@ const config: StorybookConfig = {
     if (config.resolve) {
       config.resolve.plugins = config.resolve.plugins || [];
     }
+
+    // Add TypeScript loader
+    if (config.module && config.module.rules) {
+      config.module.rules.push({
+        test: /\.(ts|tsx)$/,
+        use: [
+          {
+            loader: require.resolve('ts-loader'),
+            options: {
+              transpileOnly: true,
+            },
+          },
+        ],
+      });
+    }
+
     return config;
   },
 };

@@ -1,0 +1,24 @@
+/* Fuentes del sistema como alternativa a Aeonik */
+@font-face {
+  font-family: 'Aeonik';
+  font-style: normal;
+  font-weight: 400;
+  src: local('SF Pro Text'), local('Helvetica Neue'), local('Helvetica'),
+    local('Arial'), local('sans-serif');
+}
+
+@font-face {
+  font-family: 'Aeonik';
+  font-style: normal;
+  font-weight: 500;
+  src: local('SF Pro Text Medium'), local('Helvetica Neue Medium'),
+    local('Helvetica Bold'), local('Arial Bold'), local('sans-serif');
+}
+
+@font-face {
+  font-family: 'Aeonik';
+  font-style: normal;
+  font-weight: 700;
+  src: local('SF Pro Text Bold'), local('Helvetica Neue Bold'),
+    local('Helvetica Bold'), local('Arial Bold'), local('sans-serif');
+}
